@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Visual Transformers - Token based image representation – greg – some ML guy</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="Problem of convolutions: not all pixels are of the same importance (but they are treated like equals in conv), struggle with capturing long-range interactions, convolutions are bad for sparse high-level semantic features (low-level features are densely distributed, convolutions are apt for image processing early in nn, but as receptive field increases deeper in the network the number of potential patterns grows exponentially, semantic concepts become increasingly large)
+" />
+    <meta property="og:description" content="Problem of convolutions: not all pixels are of the same importance (but they are treated like equals in conv), struggle with capturing long-range interactions, convolutions are bad for sparse high-level semantic features (low-level features are densely distributed, convolutions are apt for image processing early in nn, but as receptive field increases deeper in the network the number of potential patterns grows exponentially, semantic concepts become increasingly large)
+" />
+    
+    <meta name="author" content="greg" />
+
+    
+    <meta property="og:title" content="Visual Transformers - Token based image representation" />
+    <meta property="twitter:title" content="Visual Transformers - Token based image representation" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="greg - some ML guy" href="/feed.xml" />
+
+    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="/" class="site-avatar"><img src="https://raw.githubusercontent.com/barryclark/jekyll-now/master/images/jekyll-logo.png" /></a>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="/">greg</a></h1>
+            <p class="site-description">some ML guy</p>
+          </div>
+
+          <nav>
+            <a href="/">Blog</a>
+            <a href="/about">About</a>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+  <h1>Visual Transformers - Token based image representation</h1>
+
+  <span>
+      
+      <a class="post-tag" href="/search?tag=semantic_segmentation">semantic_segmentation&nbsp;</a>
+      
+      <a class="post-tag" href="/search?tag=transformers">transformers&nbsp;</a>
+      
+  </span>
+
+  <i><a href="https://arxiv.org/pdf/2006.03677" style="color:blue"><br><br>https://arxiv.org/pdf/2006.03677</a></i>
+
+  <div class="entry">
+    <p>Problem of convolutions: not all pixels are of the same importance (but they are treated like equals in conv), struggle with capturing long-range interactions, convolutions are bad for sparse high-level semantic features (low-level features are densely distributed, convolutions are apt for image processing early in nn, but as receptive field increases deeper in the network the number of potential patterns grows exponentially, semantic concepts become increasingly large)</p>
+
+<p>Keep tokens and feature maps too: tokens: high-level semantics, feature maps: pixel-level details.</p>
+
+<p><img src="/images/visual_transformers/architecture.png" alt="_config.yml" class="center" /></p>
+
+<p>Visual transformer:</p>
+<ol>
+  <li>first use convolution to extract map representation</li>
+  <li>feed the feature maps to stacked visual transformers
+    <ol>
+      <li>tokenizer extracts a small number of visual tokens from the feature map
+<img src="/images/visual_transformers/function_1.png" alt="_config.yml" class="center" /><br />
+to encode the position of the contributing pixels they use position encoding, which is recorded in the token coefficient A . First downsample it, than multiply it with a learnable weight to compress the positional info in A to a smaller encoding vector.<br />
+<img src="/images/visual_transformers/function_2.png" alt="_config.yml" class="center" /><br />
+The whole tokenizer and projector:<br />
+<img src="/images/visual_transformers/tokenizer.png" alt="_config.yml" /></li>
+      <li>transformer captures the interaction between the visual tokens and computes the output tokens<br />
+<img src="/images/visual_transformers/function_3.png" alt="_config.yml" /></li>
+      <li>projector fuses the output tokens back to the feature map</li>
+    </ol>
+  </li>
+</ol>
+
+<p>Q_T to decide the information a pixel needs from the visual tokens, K_T to encode the information each visual token contains, V_T to compute the values to be fused with the feature map</p>
+
+<p><img src="/images/visual_transformers/function_4.png" alt="_config.yml" /></p>
+
+<p>Dynamic tokens:<br />
+they cascade visual transformers to capture more semantic concepts. First with a static W_A weith they extract a fixed set of semantic concepts, and after that they conpute the weight dynamically from the previous tokens, by splitting it into a and b. (tokenizer is eq(1))  The new tokens are the second half, and extraction of from the feature map with the first half and weight.</p>
+
+<p><img src="/images/visual_transformers/function_5.png" alt="_config.yml" /></p>
+
+
+  </div>
+
+  <div class="date">
+    Written on January 21, 2021
+  </div>
+
+  
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          
+
+
+
+<a href="https://github.com/gregibogyo"><i class="svg-icon github"></i></a>
+
+
+
+
+<a href="https://www.twitter.com/gregibogyo"><i class="svg-icon twitter"></i></a>
+
+
+
+        </footer>
+      </div>
+    </div>
+
+    
+
+  </body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DETR – greg – some ML guy</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="CNN to extract features, then flatten the low res features and use them in a transformer encoder decoder to predict a set. The method does not use anchors (even thou it could be using and probably could give better results) and NMS. Use bipartite matching loss to train the transformer to train the number of objects in the image and match them to the gt (the predictions are matched to the corresponding gt according to a similarity loss).
+" />
+    <meta property="og:description" content="CNN to extract features, then flatten the low res features and use them in a transformer encoder decoder to predict a set. The method does not use anchors (even thou it could be using and probably could give better results) and NMS. Use bipartite matching loss to train the transformer to train the number of objects in the image and match them to the gt (the predictions are matched to the corresponding gt according to a similarity loss).
+" />
+    
+    <meta name="author" content="greg" />
+
+    
+    <meta property="og:title" content="DETR" />
+    <meta property="twitter:title" content="DETR" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="greg - some ML guy" href="/feed.xml" />
+
+    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="/" class="site-avatar"><img src="https://raw.githubusercontent.com/barryclark/jekyll-now/master/images/jekyll-logo.png" /></a>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="/">greg</a></h1>
+            <p class="site-description">some ML guy</p>
+          </div>
+
+          <nav>
+            <a href="/">Blog</a>
+            <a href="/about">About</a>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+  <h1>DETR</h1>
+
+  <span>
+      
+      <a class="post-tag" href="/search?tag=object_detection">object_detection&nbsp;</a>
+      
+      <a class="post-tag" href="/search?tag=transformers">transformers&nbsp;</a>
+      
+  </span>
+
+  <i><a href="https://arxiv.org/pdf/2005.12872v3" style="color:blue"><br><br>https://arxiv.org/pdf/2005.12872v3</a></i>
+
+  <div class="entry">
+    <p>CNN to extract features, then flatten the low res features and use them in a transformer encoder decoder to predict a set. The method does not use anchors (even thou it could be using and probably could give better results) and NMS. Use bipartite matching loss to train the transformer to train the number of objects in the image and match them to the gt (the predictions are matched to the corresponding gt according to a similarity loss).</p>
+
+<p><img src="/images/detr/architecture.png" alt="_config.yml" /></p>
+
+<p>The results are better than the baseline Faster-RCNN, but the results on small objects are worse.</p>
+
+<p><img src="/images/detr/results.png" alt="_config.yml" /></p>
+
+  </div>
+
+  <div class="date">
+    Written on January 21, 2021
+  </div>
+
+  
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          
+
+
+
+<a href="https://github.com/gregibogyo"><i class="svg-icon github"></i></a>
+
+
+
+
+<a href="https://www.twitter.com/gregibogyo"><i class="svg-icon twitter"></i></a>
+
+
+
+        </footer>
+      </div>
+    </div>
+
+    
+
+  </body>
+</html>
