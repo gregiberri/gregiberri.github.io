@@ -2,6 +2,7 @@
 layout: post
 title: Visual Transformers - Token based image representation
 article: https://arxiv.org/abs/2006.03677
+submission: 2020 Jun
 description: Token based transformer for semantic segmentation.
 tags: ['semantic_segmentation', 'transformers']
 ---

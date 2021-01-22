@@ -2,6 +2,7 @@
 layout: post
 title: Axial-Deeplab - Stand-Alone Axial-Attention for Panoptic Segmentation
 article: https://arxiv.org/abs/2003.07853
+submission: 2020 Mar
 description: Fully attentional model for segmentation and image classification with factorizing 2D self-attention into two 1D self-attentions.
 tags: ['image_classification', 'semantic_segmentation', 'transformers']
 ---

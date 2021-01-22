@@ -2,6 +2,7 @@
 layout: post
 title: The Devil is in the Decoder
 article: https://arxiv.org/abs/1707.05847
+submission: 2017 Jul
 description: Analyzing the upsampling layers inside the decoders.
 tags: ['foundation', 'neural_net', 'semantic_segmentation', 'instance_edge_detection', 'human_keypoints', 'depth_prediction', 'colorization', 'super-resolution', 'gans']
 ---
