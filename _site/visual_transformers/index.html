@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Visual Transformers - Token based image representation – gregi's blog – my blog summarizing the ml articles I read</title>
+    <title>Visual Transformers - Token based image representation – gregi's log – my blog summarizing ml articles I have read</title>
 
         <meta charset="utf-8" />
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
@@ -14,7 +14,7 @@
     <meta property="og:description" content="Problem of convolutions: not all pixels are of the same importance (but they are treated like equals in conv), struggle with capturing long-range interactions, convolutions are bad for sparse high-level semantic features (low-level features are densely distributed, convolutions are apt for image processing early in nn, but as receptive field increases deeper in the network the number of potential patterns grows exponentially, semantic concepts become increasingly large)
 " />
     
-    <meta name="author" content="gregi's blog" />
+    <meta name="author" content="gregi's log" />
 
     
     <meta property="og:title" content="Visual Transformers - Token based image representation" />
@@ -26,7 +26,7 @@
     <![endif]-->
 
     <link rel="stylesheet" type="text/css" href="/style.css" />
-    <link rel="alternate" type="application/rss+xml" title="gregi's blog - my blog summarizing the ml articles I read" href="/feed.xml" />
+    <link rel="alternate" type="application/rss+xml" title="gregi's log - my blog summarizing ml articles I have read" href="/feed.xml" />
 
     <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
   </head>
@@ -38,8 +38,8 @@
           <a href="/" class="site-avatar"><img src="https://avatars.githubusercontent.com/u/36601982?s=460&u=362bad3bf6e1513c499261677b71986767ecb442&v=4" /></a>
 
           <div class="site-info">
-            <h1 class="site-name"><a href="/">gregi's blog</a></h1>
-            <p class="site-description">my blog summarizing the ml articles I read</p>
+            <h1 class="site-name"><a href="/">gregi's log</a></h1>
+            <p class="site-description">my blog summarizing ml articles I have read</p>
           </div>
 
           <nav>
@@ -62,14 +62,14 @@
       
   </span>
 
-  <i><a href="https://arxiv.org/pdf/2006.03677" style="color:blue"><br><br>https://arxiv.org/pdf/2006.03677</a></i>
+  <i><a href="https://arxiv.org/abs/2006.03677" style="color:blue"><br><br>https://arxiv.org/abs/2006.03677</a></i>
 
   <div class="entry">
     <p>Problem of convolutions: not all pixels are of the same importance (but they are treated like equals in conv), struggle with capturing long-range interactions, convolutions are bad for sparse high-level semantic features (low-level features are densely distributed, convolutions are apt for image processing early in nn, but as receptive field increases deeper in the network the number of potential patterns grows exponentially, semantic concepts become increasingly large)</p>
 
 <p>Keep tokens and feature maps too: tokens: high-level semantics, feature maps: pixel-level details.</p>
 
-<p><img src="/images/visual_transformers/architecture.png" alt="_config.yml" class="center" /></p>
+<p><img src="/images/visual_transformers/architecture.png" alt="architecture" class="center" /></p>
 
 <p>Visual transformer:</p>
 <ol>
@@ -77,13 +77,13 @@
   <li>feed the feature maps to stacked visual transformers
     <ol>
       <li>tokenizer extracts a small number of visual tokens from the feature map
-<img src="/images/visual_transformers/function_1.png" alt="_config.yml" class="center" /><br />
+<img src="/images/visual_transformers/function_0.png" alt="function_0" class="center" /><br />
 to encode the position of the contributing pixels they use position encoding, which is recorded in the token coefficient A . First downsample it, than multiply it with a learnable weight to compress the positional info in A to a smaller encoding vector.<br />
-<img src="/images/visual_transformers/function_2.png" alt="_config.yml" class="center" /><br />
+<img src="/images/visual_transformers/function_1.png" alt="function_1" class="center" /><br />
 The whole tokenizer and projector:<br />
-<img src="/images/visual_transformers/tokenizer.png" alt="_config.yml" /></li>
+<img src="/images/visual_transformers/tokenizer.png" alt="tokenizer" /></li>
       <li>transformer captures the interaction between the visual tokens and computes the output tokens<br />
-<img src="/images/visual_transformers/function_3.png" alt="_config.yml" /></li>
+<img src="/images/visual_transformers/function_2.png" alt="function_2" /></li>
       <li>projector fuses the output tokens back to the feature map</li>
     </ol>
   </li>
@@ -91,12 +91,12 @@ The whole tokenizer and projector:<br />
 
 <p>Q_T to decide the information a pixel needs from the visual tokens, K_T to encode the information each visual token contains, V_T to compute the values to be fused with the feature map</p>
 
-<p><img src="/images/visual_transformers/function_4.png" alt="_config.yml" /></p>
+<p><img src="/images/visual_transformers/function_3.png" alt="function_3" /></p>
 
 <p>Dynamic tokens:<br />
 they cascade visual transformers to capture more semantic concepts. First with a static W_A weith they extract a fixed set of semantic concepts, and after that they conpute the weight dynamically from the previous tokens, by splitting it into a and b. (tokenizer is eq(1))  The new tokens are the second half, and extraction of from the feature map with the first half and weight.</p>
 
-<p><img src="/images/visual_transformers/function_5.png" alt="_config.yml" /></p>
+<p><img src="/images/visual_transformers/function_4.png" alt="function_4" /></p>
 
 
   </div>

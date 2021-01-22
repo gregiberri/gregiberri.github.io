@@ -46,7 +46,6 @@ escape names on this page match those in the URL.
     <div class="collection" data-name="{{ tag | first | escape }}">
       <header>
         <h1>{{ tag | first }}</h1>
-        <h2>{{ nposts }} post{% if nposts != 1 %}s{% endif %}</h2>
       </header>
       <ul>
         {% for posts in tag %}
